@@ -8,9 +8,11 @@ public class Binario {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        String caracter = "";
+        int largo = 0;
+        int fila = 0;
 
         String[][] binaryCode = {
-         // Mayúsculas
             {"A", "01000001"}, {"B", "01000010"}, {"C", "01000011"}, {"D", "01000100"}, {"E", "01000101"},
             {"F", "01000110"}, {"G", "01000111"}, {"H", "01001000"}, {"I", "01001001"}, {"J", "01001010"},
             {"K", "01001011"}, {"L", "01001100"}, {"M", "01001101"}, {"N", "01001110"}, {"O", "01001111"},
@@ -46,13 +48,27 @@ public class Binario {
             char character = frase.charAt(i);
             String charString = Character.toString(character);
 
-            if (morseMap.containsKey(charString)) {
-                System.out.print(morseMap.get(charString)+" ");
-            } else if (charString.equals(" ")) {
-                System.out.print("00100000 ");
+            if (largo >= 106) {
+                caracter = caracter + "\n";
+                largo = 0;
+                fila = caracter.length();
+            } else if (largo > 0) {
+                caracter = caracter + " ";
             }
+
+            if (morseMap.containsKey(charString)) {
+                caracter = caracter + morseMap.get(charString);
+            } else if (charString.equals(" ")) {
+                caracter = caracter + "00100000";
+            } else if (charString.equals(" ")) {
+                caracter = caracter + "00100000";
+            } else {
+                caracter = caracter + "????????";
+            }
+            largo = caracter.length() - fila;
         }
-        System.out.println("");
+        System.out.println(caracter);
+        System.out.println(caracter.length());
         System.out.println("==================================================================================================================");
     }
 }
